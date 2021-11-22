@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.schemas.BaseSchema;
 import hexlet.code.schemas.map.MapSchema;
 import hexlet.code.schemas.number.NumberSchema;
 import hexlet.code.schemas.string.StringSchema;
@@ -128,5 +129,41 @@ public class ValidateTest {
 
         data.put("key2", "value2");
         assertTrue(schema.isValid(data)); // true
+    }
+
+    // ======================SHAPE======================
+    @Test
+    void shapeTest() {
+        MapSchema schema = v.map();
+
+        // shape - позволяет описывать валидацию для значений объекта Map по ключам.
+        Map<String, BaseSchema> schemas = new HashMap<>();
+        schemas.put("name", v.string().required());
+        schemas.put("age", v.number().positive());
+        schema.shape(schemas);
+
+        Map<String, Object> human1 = new HashMap<>();
+        human1.put("name", "Kolya");
+        human1.put("age", TEN);
+        boolean actual1 = schema.isValid(human1);
+        assertTrue(actual1); // true
+
+        Map<String, Object> human2 = new HashMap<>();
+        human2.put("name", "Maya");
+        human2.put("age", null);
+        boolean actual2 = schema.isValid(human2);
+        assertFalse(actual2);
+
+        Map<String, Object> human3 = new HashMap<>();
+        human3.put("name", "");
+        human3.put("age", null);
+        boolean actual3 = schema.isValid(human3); // false
+        assertFalse(actual3); // false
+
+        Map<String, Object> human4 = new HashMap<>();
+        human4.put("name", "Valya");
+        human4.put("age", MINUS_TEN);
+        boolean actual4 = schema.isValid(human4);
+        assertFalse(actual4); // false
     }
 }

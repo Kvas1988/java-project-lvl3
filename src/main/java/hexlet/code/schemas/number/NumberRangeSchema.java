@@ -10,14 +10,6 @@ public final class NumberRangeSchema extends NumberSchema {
         this.endRange = endRangeToValidate;
     }
 
-    public void setStartRange(int startRangeToValidate) {
-        this.startRange = startRangeToValidate;
-    }
-
-    public void setEndRange(int endRangeToValidate) {
-        this.endRange = endRangeToValidate;
-    }
-
     @Override
     public boolean isValid(Object obj) {
         if (obj instanceof Number) {

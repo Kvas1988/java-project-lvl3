@@ -14,7 +14,7 @@ public class StringSchema extends BaseSchema {
     /**
      * @return StringRequiredSchema
      */
-    public StringSchema required() {
+    public final StringSchema required() {
         setSchema(new StringRequiredSchema());
         return new StringRequiredSchema();
     }
@@ -23,7 +23,7 @@ public class StringSchema extends BaseSchema {
      * @param contains set a value to validate on if object contains it
      * @return StringContainsSchema
      */
-    public StringSchema contains(String contains) {
+    public final StringSchema contains(String contains) {
         setSchema(new StringContainsSchema(contains));
         return new StringContainsSchema(contains);
     }
@@ -32,7 +32,7 @@ public class StringSchema extends BaseSchema {
      * @param minLength set a value to validate if a String size more or equal to it
      * @return StringMinLengthSchema
      */
-    public StringSchema minLength(int minLength) {
+    public final StringSchema minLength(int minLength) {
         setSchema(new StringMinLengthSchema(minLength));
         return new StringMinLengthSchema(minLength);
     }

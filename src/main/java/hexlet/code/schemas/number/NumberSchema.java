@@ -14,7 +14,7 @@ public class NumberSchema extends BaseSchema {
     /**
      * @return NumberRequiredSchema
      */
-    public NumberSchema required() {
+    public final NumberSchema required() {
         setSchema(new NumberRequiredSchema());
         return new NumberRequiredSchema();
     }
@@ -22,7 +22,7 @@ public class NumberSchema extends BaseSchema {
     /**
      * @return NumberPositiveSchema
      */
-    public NumberSchema positive() {
+    public final NumberSchema positive() {
         setSchema(new NumberPositiveSchema());
         return new NumberPositiveSchema();
     }
@@ -32,16 +32,17 @@ public class NumberSchema extends BaseSchema {
      * @param endRange upper band of a range
      * @return NumberRangeSchema
      */
-    public NumberSchema range(int startRange, int endRange) {
+    public final NumberSchema range(int startRange, int endRange) {
         setSchema(new NumberRangeSchema(startRange, endRange));
         return new NumberRangeSchema(startRange, endRange);
     }
+
+    // =================================================
 
     /**
      * @param obj Object to validate
      * @return true if Number is valid
      */
-    // =================================================
     @Override
     public boolean isValid(Object obj) {
         return getSchema().isValid(obj);
