@@ -1,5 +1,7 @@
 package hexlet.code.schemas.string;
 
+import hexlet.code.schemas.StringSchema;
+
 public final class StringContainsSchema extends StringSchema {
 
     private String pattern;

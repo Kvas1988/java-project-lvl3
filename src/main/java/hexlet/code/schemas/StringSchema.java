@@ -1,6 +1,8 @@
-package hexlet.code.schemas.string;
+package hexlet.code.schemas;
 
-import hexlet.code.schemas.BaseSchema;
+import hexlet.code.schemas.string.StringContainsSchema;
+import hexlet.code.schemas.string.StringMinLengthSchema;
+import hexlet.code.schemas.string.StringRequiredSchema;
 
 public class StringSchema extends BaseSchema {
 

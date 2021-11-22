@@ -1,6 +1,8 @@
-package hexlet.code.schemas.number;
+package hexlet.code.schemas;
 
-import hexlet.code.schemas.BaseSchema;
+import hexlet.code.schemas.number.NumberPositiveSchema;
+import hexlet.code.schemas.number.NumberRangeSchema;
+import hexlet.code.schemas.number.NumberRequiredSchema;
 
 public class NumberSchema extends BaseSchema {
 

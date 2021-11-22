@@ -1,6 +1,8 @@
-package hexlet.code.schemas.map;
+package hexlet.code.schemas;
 
-import hexlet.code.schemas.BaseSchema;
+import hexlet.code.schemas.map.MapRequiredSchema;
+import hexlet.code.schemas.map.MapShapeSchema;
+import hexlet.code.schemas.map.MapSizeOfSchema;
 
 import java.util.Map;
 
@@ -47,5 +49,4 @@ public class MapSchema extends BaseSchema {
     public boolean isValid(Object obj) {
         return getSchema().isValid(obj);
     }
-
 }

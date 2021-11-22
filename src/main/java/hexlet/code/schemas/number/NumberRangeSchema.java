@@ -1,5 +1,7 @@
 package hexlet.code.schemas.number;
 
+import hexlet.code.schemas.NumberSchema;
+
 public final class NumberRangeSchema extends NumberSchema {
 
     private int startRange;
