@@ -17,7 +17,7 @@ public class ValidateTest {
 
     private static Validator v;
 
-    // checkStyle Magic number ROFL
+    // checkStyle Magic number kek cheburek
     private static final int MINUS_TEN = -10;
     private static final int FIVE = 5;
     private static final int EIGHT = 8;
