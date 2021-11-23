@@ -10,7 +10,8 @@ public class StringSchema extends BaseSchema {
     }
 
     public final StringSchema contains(String pattern) {
-        addPredicate(obj -> obj instanceof String
+        addPredicate(obj -> obj == null
+                || obj instanceof String
                 && ((String) obj).contains(pattern)
         );
 
@@ -18,7 +19,8 @@ public class StringSchema extends BaseSchema {
     }
 
     public final StringSchema minLength(int minLength) {
-        addPredicate(obj -> obj instanceof String
+        addPredicate(obj -> obj == null
+                || obj instanceof String
                 && ((String) obj).length() >= minLength
         );
 

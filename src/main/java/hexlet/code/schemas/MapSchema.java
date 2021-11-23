@@ -11,7 +11,8 @@ public class MapSchema extends BaseSchema {
     }
 
     public final MapSchema sizeof(int size) {
-        addPredicate(obj -> obj instanceof Map
+        addPredicate(obj -> obj == null
+                || obj instanceof Map
                 && ((Map) obj).size() == size
         );
         return this;
@@ -22,7 +23,8 @@ public class MapSchema extends BaseSchema {
             String key = entry.getKey();
             BaseSchema schema = entry.getValue();
 
-            addPredicate(obj -> obj instanceof Map
+            addPredicate(obj -> obj == null
+                    || obj instanceof Map
                     && schema.isValid(((Map) obj).get(key))
             );
         }

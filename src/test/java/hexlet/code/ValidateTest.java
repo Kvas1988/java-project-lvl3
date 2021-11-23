@@ -152,12 +152,12 @@ public class ValidateTest {
         human2.put("name", "Maya");
         human2.put("age", null);
         boolean actual2 = schema.isValid(human2);
-        assertFalse(actual2);
+        assertTrue(actual2);
 
         Map<String, Object> human3 = new HashMap<>();
         human3.put("name", "");
         human3.put("age", null);
-        boolean actual3 = schema.isValid(human3); // false
+        boolean actual3 = schema.isValid(human3);
         assertFalse(actual3); // false
 
         Map<String, Object> human4 = new HashMap<>();
