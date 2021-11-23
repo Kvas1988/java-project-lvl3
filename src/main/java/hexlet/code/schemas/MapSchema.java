@@ -1,52 +1,32 @@
 package hexlet.code.schemas;
 
-import hexlet.code.schemas.map.MapRequiredSchema;
-import hexlet.code.schemas.map.MapShapeSchema;
-import hexlet.code.schemas.map.MapSizeOfSchema;
-
 import java.util.Map;
 
 public class MapSchema extends BaseSchema {
 
-    public MapSchema() {
-        setSchema(new BaseSchema());
-    }
 
-    // ======================SETUP======================
-
-    /**
-     * @return MapRequiredScheme to validate Map Collection's objects
-     */
     public final MapSchema required() {
-        setSchema(new MapRequiredSchema());
-        return new MapRequiredSchema();
+        addPredicate(obj -> obj instanceof Map);
+        return this;
     }
 
-    /**
-     * @param size param to validate on the size of a Map
-     * @return MapSizeOfSchema
-     */
     public final MapSchema sizeof(int size) {
-        setSchema(new MapSizeOfSchema(size));
-        return new MapSizeOfSchema(size);
+        addPredicate(obj -> obj instanceof Map
+                && ((Map) obj).size() == size
+        );
+        return this;
     }
 
-    /**
-     * @param schemas map with schemas to validate on Object by its keys
-     * @return true if all values of object is valid
-     */
     public final MapSchema shape(Map<String, BaseSchema> schemas) {
-        setSchema(new MapShapeSchema(schemas));
-        return new MapShapeSchema(schemas);
-    }
-    // =================================================
+        for (Map.Entry<String, BaseSchema> entry : schemas.entrySet()) {
+            String key = entry.getKey();
+            BaseSchema schema = entry.getValue();
 
-    /**
-     * @param obj Object to validate
-     * @return true if a Map is valid
-     */
-    @Override
-    public boolean isValid(Object obj) {
-        return getSchema().isValid(obj);
+            addPredicate(obj -> obj instanceof Map
+                    && schema.isValid(((Map) obj).get(key))
+            );
+        }
+
+        return this;
     }
 }

@@ -1,15 +1,15 @@
 package hexlet.code.schemas;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
 public class BaseSchema {
 
-    private BaseSchema schema;
+    private List<Predicate<Object>>  predicates = new ArrayList<>();
 
-    protected final BaseSchema getSchema() {
-        return schema;
-    }
-
-    protected final void setSchema(BaseSchema schemaToSet) {
-        this.schema = schemaToSet;
+    protected final void addPredicate(Predicate<Object> predicate) {
+        predicates.add(predicate);
     }
 
     /**
@@ -17,6 +17,11 @@ public class BaseSchema {
      * @return true if data is valid
      */
     public boolean isValid(Object obj) {
+        for (Predicate<Object> pr : predicates) {
+            if (!pr.test(obj)) {
+                return false;
+            }
+        }
         return true;
     }
 }

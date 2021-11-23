@@ -1,52 +1,28 @@
 package hexlet.code.schemas;
 
-import hexlet.code.schemas.string.StringContainsSchema;
-import hexlet.code.schemas.string.StringMinLengthSchema;
-import hexlet.code.schemas.string.StringRequiredSchema;
-
 public class StringSchema extends BaseSchema {
 
-    public StringSchema() {
-        // this.schema = new BaseSchema();
-        setSchema(new BaseSchema());
-    }
-
-    // ======================SETUP======================
-
-    /**
-     * @return StringRequiredSchema
-     */
     public final StringSchema required() {
-        setSchema(new StringRequiredSchema());
-        return new StringRequiredSchema();
+        addPredicate(obj -> obj instanceof String
+                        && !((String) obj).isEmpty()
+        );
+        return this;
     }
 
-    /**
-     * @param contains set a value to validate on if object contains it
-     * @return StringContainsSchema
-     */
-    public final StringSchema contains(String contains) {
-        setSchema(new StringContainsSchema(contains));
-        return new StringContainsSchema(contains);
+    public final StringSchema contains(String pattern) {
+        addPredicate(obj -> obj instanceof String
+                && ((String) obj).contains(pattern)
+        );
+
+        return this;
     }
 
-    /**
-     * @param minLength set a value to validate if a String size more or equal to it
-     * @return StringMinLengthSchema
-     */
     public final StringSchema minLength(int minLength) {
-        setSchema(new StringMinLengthSchema(minLength));
-        return new StringMinLengthSchema(minLength);
+        addPredicate(obj -> obj instanceof String
+                && ((String) obj).length() >= minLength
+        );
+
+        return this;
     }
 
-    // =================================================
-
-    /**
-     * @param obj Object to validate
-     * @return true if String is valid
-     */
-    @Override
-    public boolean isValid(Object obj) {
-        return getSchema().isValid(obj);
-    }
 }
